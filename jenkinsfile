@@ -9,7 +9,7 @@ pipeline {
         }
          stage('CI') {
             steps {
-                   withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'mypass', usernameVariable: 'myname')])
+                   withCredentials([usernamePassword(credentialsId: 'docker_2', passwordVariable: 'mypass', usernameVariable: 'myname')])
                    {
                      sh """
                     docker build . -t ghada/myimage:1.0
@@ -22,7 +22,7 @@ pipeline {
         
         stage('CD') {
             steps {
-                   withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'mypass', usernameVariable: 'myname')])
+                   withCredentials([usernamePassword(credentialsId: 'docker_2', passwordVariable: 'mypass', usernameVariable: 'myname')])
                    {
                    
                    sh """
