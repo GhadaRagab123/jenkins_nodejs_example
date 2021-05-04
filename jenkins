@@ -9,11 +9,11 @@ pipeline {
         }
          stage('CI') {
             steps {
-                   withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'mypass', usernameVariable: 'myname')])
+                   withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'mypass', usernameVariable: 'myname')])
                    {
                      sh """
                     docker build . -t ghada/myimage:1.0
-                    docker login --username $(myname) --password $(mypass)
+                    docker login --username ${myname} --password ${mypass}
                     docker push ghada/myimage:1.0
                     """
                    }
@@ -22,7 +22,7 @@ pipeline {
         
         stage('CD') {
             steps {
-                   withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'mypass', usernameVariable: 'myname')])
+                   withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'mypass', usernameVariable: 'myname')])
                    {
                    
                    sh """
